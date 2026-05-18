@@ -6,7 +6,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -32,7 +31,7 @@ class PremiereVueFXMLTest {
 
   // --- Étape 1 : la fenêtre est affichée ---
 
-  @Disabled("Retire cette annotation pour activer le test")
+  // @Disabled("Retire cette annotation pour activer le test")
   @Test
   @Order(1)
   void la_fenetre_de_la_vue_fxml_est_visible(FxRobot robot) {
@@ -41,7 +40,7 @@ class PremiereVueFXMLTest {
         .isTrue();
   }
 
-  @Disabled("Retire cette annotation pour activer le test")
+  // @Disabled("Retire cette annotation pour activer le test")
   @Test
   @Order(2)
   void la_scene_du_stage_contient_la_racine_fxml(FxRobot robot) {
@@ -52,7 +51,7 @@ class PremiereVueFXMLTest {
 
   // --- Étape 2 : la racine provient bien du FXML ---
 
-  @Disabled("Retire cette annotation pour activer le test")
+  // @Disabled("Retire cette annotation pour activer le test")
   @Test
   @Order(3)
   void la_racine_de_la_vue_fxml_est_un_borderpane(FxRobot robot) {
@@ -61,7 +60,7 @@ class PremiereVueFXMLTest {
         .isInstanceOf(BorderPane.class);
   }
 
-  @Disabled("Retire cette annotation pour activer le test")
+  // @Disabled("Retire cette annotation pour activer le test")
   @Test
   @Order(4)
   void le_stage_porte_le_titre_attendu(FxRobot robot) {
@@ -72,7 +71,7 @@ class PremiereVueFXMLTest {
 
   // --- Étape 3 : les composants du FXML sont bien présents ---
 
-  @Disabled("Retire cette annotation pour activer le test")
+  // @Disabled("Retire cette annotation pour activer le test")
   @Test
   @Order(5)
   void le_label_de_bienvenue_est_affiche_dans_la_vue(FxRobot robot) {
@@ -94,7 +93,7 @@ class PremiereVueFXMLTest {
         .isNotNull();
   }
 
-  @Disabled("Retire cette annotation pour activer le test")
+  // @Disabled("Retire cette annotation pour activer le test")
   @Test
   @Order(6)
   void le_bouton_est_affiche_dans_la_vue(FxRobot robot) {

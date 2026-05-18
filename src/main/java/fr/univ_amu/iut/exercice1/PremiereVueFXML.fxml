@@ -24,7 +24,30 @@
   attributs précis de chaque composant.
 -->
 
-<BorderPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
-            prefWidth="420.0" prefHeight="240.0">
+<BorderPane xmlns="http://javafx.com/javafx/25"
+            xmlns:fx="http://javafx.com/fxml/1"
+            prefWidth="420.0"
+            prefHeight="240.0">
+
+    <padding>
+        <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
+    </padding>
+
+    <top>
+        <Label text="Bienvenue dans le monde FXML !"
+               style="-fx-font-weight: bold; -fx-font-size: 20px;"
+               BorderPane.alignment="CENTER"/>
+    </top>
+
+    <center>
+        <Label text="Cette interface est décrite dans un fichier FXML puis chargée depuis Java."
+               wrapText="true"
+               BorderPane.alignment="CENTER"/>
+    </center>
+
+    <bottom>
+        <Button text="D'accord, c'est magique"
+                BorderPane.alignment="CENTER"/>
+    </bottom>
 
 </BorderPane>
