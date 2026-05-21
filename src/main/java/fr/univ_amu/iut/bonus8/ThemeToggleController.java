@@ -1,6 +1,7 @@
 package fr.univ_amu.iut.bonus8;
 
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.Region;
 
@@ -21,10 +22,33 @@ public class ThemeToggleController {
 
   @FXML
   private void initialize() {
-    // TODO bonus 8 : à chaque changement de sélection du ToggleButton, remplacer la feuille
-    // CSS active sur la Scene par theme-clair.css (non sélectionné) ou theme-sombre.css
-    // (sélectionné). On localise les URL via getClass().getResource("nom.css").toExternalForm().
-    // Astuce : utiliser scene.getStylesheets().setAll(url) pour remplacer toutes les feuilles
+    // TODO bonus 8 : à chaque changement de sélection du ToggleButton, remplacer la
+    // feuille
+    // CSS active sur la Scene par theme-clair.css (non sélectionné) ou
+    // theme-sombre.css
+    // (sélectionné). On localise les URL via
+    // getClass().getResource("nom.css").toExternalForm().
+    // Astuce : utiliser scene.getStylesheets().setAll(url) pour remplacer toutes
+    // les feuilles
     // en une seule opération.
+
+    boutonTheme
+        .selectedProperty()
+        .addListener(
+            (obs, ancien, nouveau) -> {
+              String fichierCss;
+
+              if (nouveau) {
+                fichierCss = CSS_SOMBRE;
+                boutonTheme.setText(" Mode clair");
+              } else {
+                fichierCss = CSS_CLAIR;
+                boutonTheme.setText(" Mode sombre");
+              }
+
+              String url = getClass().getResource(fichierCss).toExternalForm();
+              Scene scene = racine.getScene();
+              scene.getStylesheets().setAll(url);
+            });
   }
 }

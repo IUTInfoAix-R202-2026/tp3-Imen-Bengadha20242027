@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import javafx.scene.control.ToggleButton;
 import javafx.stage.Stage;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -25,7 +24,7 @@ class ThemeToggleControllerTest {
     new ThemeToggle().start(stage);
   }
 
-  @Disabled("Retire cette annotation pour activer le test")
+  // @Disabled("Retire cette annotation pour activer le test")
   @Test
   @Order(1)
   void le_theme_clair_est_actif_au_demarrage(FxRobot robot) {
@@ -39,7 +38,7 @@ class ThemeToggleControllerTest {
         .isFalse();
   }
 
-  @Disabled("Retire cette annotation pour activer le test")
+  // @Disabled("Retire cette annotation pour activer le test")
   @Test
   @Order(2)
   void cliquer_sur_le_toggle_bascule_vers_le_theme_sombre(FxRobot robot) {
@@ -51,7 +50,7 @@ class ThemeToggleControllerTest {
     assertThat(bouton.getScene().getStylesheets().get(0)).endsWith("/theme-sombre.css");
   }
 
-  @Disabled("Retire cette annotation pour activer le test")
+  // @Disabled("Retire cette annotation pour activer le test")
   @Test
   @Order(3)
   void un_second_clic_sur_le_toggle_revient_au_theme_clair(FxRobot robot) {
@@ -63,7 +62,7 @@ class ThemeToggleControllerTest {
         .endsWith("/theme-clair.css");
   }
 
-  @Disabled("Retire cette annotation pour activer le test")
+  // @Disabled("Retire cette annotation pour activer le test")
   @Test
   @Order(4)
   void le_libelle_du_toggle_reflete_le_theme_actif(FxRobot robot) {
