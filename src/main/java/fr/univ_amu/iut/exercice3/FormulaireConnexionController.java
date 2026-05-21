@@ -53,22 +53,50 @@ public class FormulaireConnexionController {
   private void initialize() {
     // TODO exercice 3 : installer les bindings de validation.
     //
-    // 1. Le mot de passe n'est éditable que si l'identifiant contient au moins 6 caractères :
-    //      champMotDePasse.editableProperty().bind(
-    //          Bindings.greaterThanOrEqual(champIdentifiant.textProperty().length(), 6));
+    // 1. Le mot de passe n'est éditable que si l'identifiant contient au moins 6
+    // caractères :
+    // champMotDePasse.editableProperty().bind(
+    // Bindings.greaterThanOrEqual(champIdentifiant.textProperty().length(), 6));
     //
     // 2. Le bouton Annuler est désactivé si les deux champs sont vides :
-    //      boutonAnnuler.disableProperty().bind(
-    //          Bindings.and(
-    //              Bindings.equal(0, champIdentifiant.textProperty().length()),
-    //              Bindings.equal(0, champMotDePasse.textProperty().length())));
+    // boutonAnnuler.disableProperty().bind(
+    // Bindings.and(
+    // Bindings.equal(0, champIdentifiant.textProperty().length()),
+    // Bindings.equal(0, champMotDePasse.textProperty().length())));
     //
     // 3. Le bouton OK est désactivé tant que le mot de passe n'est pas valide.
-    //    On crée une classe interne anonyme `new BooleanBinding() { ... }` :
-    //      - bloc d'initialisation : super.bind(champMotDePasse.textProperty())
-    //      - computeValue() : retourne true si le mot de passe est trop court (< 8)
-    //        OU ne contient pas de majuscule OU ne contient pas de chiffre.
-    //    Puis : boutonOk.disableProperty().bind(motDePasseInvalide);
+    // On crée une classe interne anonyme `new BooleanBinding() { ... }` :
+    // - bloc d'initialisation : super.bind(champMotDePasse.textProperty())
+    // - computeValue() : retourne true si le mot de passe est trop court (< 8)
+    // OU ne contient pas de majuscule OU ne contient pas de chiffre.
+    // Puis : boutonOk.disableProperty().bind(motDePasseInvalide);
+
+    champMotDePasse
+        .editableProperty()
+        .bind(Bindings.greaterThanOrEqual(champIdentifiant.textProperty().length(), 6));
+
+    boutonAnnuler
+        .disableProperty()
+        .bind(
+            Bindings.and(
+                Bindings.equal(0, champIdentifiant.textProperty().length()),
+                Bindings.equal(0, champMotDePasse.textProperty().length())));
+
+    BooleanBinding motDePasseInvalide =
+        new BooleanBinding() {
+          {
+            super.bind(champMotDePasse.textProperty());
+          }
+
+          @Override
+          protected boolean computeValue() {
+            String motDePasse = champMotDePasse.getText();
+            return motDePasse.length() < 8
+                || motDePasse.chars().noneMatch(Character::isUpperCase)
+                || motDePasse.chars().noneMatch(Character::isDigit);
+          }
+        };
+    boutonOk.disableProperty().bind(motDePasseInvalide);
   }
 
   /**
@@ -79,12 +107,18 @@ public class FormulaireConnexionController {
   private void valider() {
     // TODO exercice 3 : afficher dans labelMessage l'identifiant suivi du mot
     // de passe masqué par autant d'étoiles que de caractères saisis.
-    // Exemple : "alice ********" pour identifiant "alice" et mot de passe de 8 caractères.
+    // Exemple : "alice ********" pour identifiant "alice" et mot de passe de 8
+    // caractères.
+    labelMessage.setText(
+        champIdentifiant.getText() + " " + "*".repeat(champMotDePasse.getText().length()));
   }
 
   /** Action du bouton Annuler. Vide les deux champs et le label de message. */
   @FXML
   private void annuler() {
     // TODO exercice 3 : vider les deux champs et le label message.
+    champIdentifiant.setText("");
+    champMotDePasse.setText("");
+    labelMessage.setText("");
   }
 }
